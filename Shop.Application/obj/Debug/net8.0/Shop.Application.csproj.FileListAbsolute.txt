@@ -1,0 +1,16 @@
+C:\Medtehnika\backend\Shop.API\Shop.Application\bin\Debug\net8.0\Shop.Application.deps.json
+C:\Medtehnika\backend\Shop.API\Shop.Application\bin\Debug\net8.0\Shop.Application.dll
+C:\Medtehnika\backend\Shop.API\Shop.Application\bin\Debug\net8.0\Shop.Application.pdb
+C:\Medtehnika\backend\Shop.API\Shop.Application\bin\Debug\net8.0\Shop.Core.dll
+C:\Medtehnika\backend\Shop.API\Shop.Application\bin\Debug\net8.0\Shop.Core.pdb
+C:\Medtehnika\backend\Shop.API\Shop.Application\obj\Debug\net8.0\Shop.Application.csproj.AssemblyReference.cache
+C:\Medtehnika\backend\Shop.API\Shop.Application\obj\Debug\net8.0\Shop.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Medtehnika\backend\Shop.API\Shop.Application\obj\Debug\net8.0\Shop.Application.AssemblyInfoInputs.cache
+C:\Medtehnika\backend\Shop.API\Shop.Application\obj\Debug\net8.0\Shop.Application.AssemblyInfo.cs
+C:\Medtehnika\backend\Shop.API\Shop.Application\obj\Debug\net8.0\Shop.Application.csproj.CoreCompileInputs.cache
+C:\Medtehnika\backend\Shop.API\Shop.Application\obj\Debug\net8.0\Shop.App.3200E812.Up2Date
+C:\Medtehnika\backend\Shop.API\Shop.Application\obj\Debug\net8.0\Shop.Application.dll
+C:\Medtehnika\backend\Shop.API\Shop.Application\obj\Debug\net8.0\refint\Shop.Application.dll
+C:\Medtehnika\backend\Shop.API\Shop.Application\obj\Debug\net8.0\Shop.Application.pdb
+C:\Medtehnika\backend\Shop.API\Shop.Application\obj\Debug\net8.0\ref\Shop.Application.dll
+C:\Medtehnika\backend\Shop.API\Shop.Application\obj\Debug\net8.0\Shop.Application.sourcelink.json
