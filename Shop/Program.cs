@@ -15,6 +15,14 @@ var services = builder.Services;
 // Добавляем поддержку переменных окружения
 builder.Configuration.AddEnvironmentVariables();
 
+// --- Railway/Render: поддержка переменной PORT ---
+var port = Environment.GetEnvironmentVariable("PORT");
+if (!string.IsNullOrEmpty(port))
+{
+    builder.WebHost.UseUrls($"http://*:{port}");
+}
+// --------------------------------------------------
+
 builder.Services.AddAutoMapper(typeof(Program));
 services.Configure<JwtOptions>(builder.Configuration.GetSection(nameof(JwtOptions)));
 
