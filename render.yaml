@@ -1,0 +1,37 @@
+services:
+  - type: web
+    name: shop-api
+    env: docker
+    dockerfilePath: ./Shop/Dockerfile
+    dockerContext: .
+    envVars:
+      - key: ASPNETCORE_ENVIRONMENT
+        value: Production
+      - key: DB_HOST
+        fromDatabase:
+          name: shop-db
+          property: host
+      - key: DB_NAME
+        fromDatabase:
+          name: shop-db
+          property: database
+      - key: DB_USER
+        fromDatabase:
+          name: shop-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: shop-db
+          property: password
+      - key: DB_PORT
+        fromDatabase:
+          name: shop-db
+          property: port
+      - key: JWT_SECRET_KEY
+        generateValue: true
+    healthCheckPath: /health
+
+databases:
+  - name: shop-db
+    databaseName: shopdb
+    user: shopuser 
