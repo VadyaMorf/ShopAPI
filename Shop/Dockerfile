@@ -26,4 +26,6 @@ RUN dotnet publish "Shop.csproj" -c Release -o /app/publish /p:UseAppHost=false
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
+# Копируем XML файлы в контейнер
+COPY ["Shop/xml_files", "/app/xml_files"]
 ENTRYPOINT ["dotnet", "Shop.dll"]

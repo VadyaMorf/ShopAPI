@@ -133,9 +133,13 @@ using (var scope = app.Services.CreateScope())
                 var possiblePaths = new[]
                 {
                     Path.Combine(Directory.GetCurrentDirectory(), "xml_files", "products_feed.xml"),
-                    Path.Combine(Directory.GetCurrentDirectory(), "..", "..", "products_feed.xml"),
-                    Path.Combine(Directory.GetCurrentDirectory(), "..", "products_feed.xml"),
-                    Path.Combine(Directory.GetCurrentDirectory(), "products_feed.xml")
+                    Path.Combine(Directory.GetCurrentDirectory(), "..", "xml_files", "products_feed.xml"),
+                    Path.Combine(Directory.GetCurrentDirectory(), "..", "..", "xml_files", "products_feed.xml"),
+                    Path.Combine(Directory.GetCurrentDirectory(), "..", "..", "..", "xml_files", "products_feed.xml"),
+                    Path.Combine(Directory.GetCurrentDirectory(), "xml_files", "products_feed.xml"),
+                    Path.Combine(Directory.GetCurrentDirectory(), "products_feed.xml"),
+                    "xml_files/products_feed.xml",
+                    "products_feed.xml"
                 };
                 string? xmlPath = null;
                 foreach (var path in possiblePaths)

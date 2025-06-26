@@ -257,18 +257,34 @@ namespace Shop.Application.Services
             // Получаем правильное имя файла из маппинга
             var fileName = _categoryFileMapping.GetValueOrDefault(category.ToLowerInvariant(), category);
             
-            // Формируем путь к файлу по имени категории
-            var xmlPath = Path.Combine("xml_files", $"{fileName}.xml");
+            var possiblePaths = new[]
+            {
+                Path.Combine("xml_files", $"{fileName}.xml"),
+                Path.Combine(Directory.GetCurrentDirectory(), "xml_files", $"{fileName}.xml"),
+                Path.Combine(Directory.GetCurrentDirectory(), "..", "xml_files", $"{fileName}.xml"),
+                Path.Combine(Directory.GetCurrentDirectory(), "..", "..", "xml_files", $"{fileName}.xml"),
+                Path.Combine(Directory.GetCurrentDirectory(), "..", "..", "..", "xml_files", $"{fileName}.xml")
+            };
             
-            // Добавляем отладочную информацию
-            var fullPath = Path.GetFullPath(xmlPath);
-            _logger.LogInformation("Ищем файл: {FullPath}", fullPath);
+            string? xmlPath = null;
+            foreach (var path in possiblePaths)
+            {
+                var fullPath = Path.GetFullPath(path);
+                _logger.LogInformation("Проверяем путь для категории {Category}: {Path}", category, fullPath);
+                if (File.Exists(path))
+                {
+                    xmlPath = path;
+                    _logger.LogInformation("XML файл найден по пути: {Path}", fullPath);
+                    break;
+                }
+            }
             
-            if (!File.Exists(xmlPath))
+            if (xmlPath == null)
             {
                 _logger.LogWarning("XML файл не найден для категории: {Category} (файл: {FileName})", category, fileName);
                 return new List<Product>();
             }
+            
             return await GetProductsFromXml(xmlPath, category);
         }
 
@@ -372,15 +388,32 @@ namespace Shop.Application.Services
 
         public async Task<List<Product>> GetProductsFromFeed()
         {
-            var xmlPath = Path.Combine("xml_files", "products_feed.xml");
-            
-            // Добавляем отладочную информацию
-            var fullPath = Path.GetFullPath(xmlPath);
-            _logger.LogInformation("Ищем файл products_feed: {FullPath}", fullPath);
-            
-            if (!File.Exists(xmlPath))
+            var possiblePaths = new[]
             {
-                _logger.LogWarning("Файл products_feed.xml не найден по пути: {Path}", xmlPath);
+                Path.Combine("xml_files", "products_feed.xml"),
+                Path.Combine(Directory.GetCurrentDirectory(), "xml_files", "products_feed.xml"),
+                Path.Combine(Directory.GetCurrentDirectory(), "..", "xml_files", "products_feed.xml"),
+                Path.Combine(Directory.GetCurrentDirectory(), "..", "..", "xml_files", "products_feed.xml"),
+                Path.Combine(Directory.GetCurrentDirectory(), "..", "..", "..", "xml_files", "products_feed.xml"),
+                Path.Combine(Directory.GetCurrentDirectory(), "products_feed.xml")
+            };
+            
+            string? xmlPath = null;
+            foreach (var path in possiblePaths)
+            {
+                var fullPath = Path.GetFullPath(path);
+                _logger.LogInformation("Проверяем путь: {Path}", fullPath);
+                if (File.Exists(path))
+                {
+                    xmlPath = path;
+                    _logger.LogInformation("XML файл найден по пути: {Path}", fullPath);
+                    break;
+                }
+            }
+            
+            if (xmlPath == null)
+            {
+                _logger.LogWarning("Файл products_feed.xml не найден ни по одному из путей");
                 return new List<Product>();
             }
             

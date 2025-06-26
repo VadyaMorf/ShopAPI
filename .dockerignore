@@ -1,4 +1,4 @@
-**/.classpath
+# Игнорируем ненужные файлы при сборке Docker образа
 **/.dockerignore
 **/.env
 **/.git
@@ -24,8 +24,4 @@
 **/values.dev.yaml
 LICENSE
 README.md
-!**/.gitignore
-!.git/HEAD
-!.git/config
-!.git/packed-refs
-!.git/refs/heads/**
+**/Shop.API.sln
