@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Shop.Infastracture")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c3a21f68c630b1cc10d2db246889f39b60da8a9c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+504840c5a1f1bae36acca0c0717289204cc72913")]
 [assembly: System.Reflection.AssemblyProductAttribute("Shop.Infastracture")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Shop.Infastracture")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

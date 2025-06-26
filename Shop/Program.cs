@@ -36,10 +36,36 @@ var dbPort = Environment.GetEnvironmentVariable("DB_PORT");
 var dbName = Environment.GetEnvironmentVariable("DB_NAME");
 var dbUser = Environment.GetEnvironmentVariable("DB_USER");
 var dbPassword = Environment.GetEnvironmentVariable("DB_PASSWORD");
-var connectionString = $"Host={dbHost};Port={dbPort};Database={dbName};Username={dbUser};Password={dbPassword}";
+
+// Логируем переменные окружения (без пароля)
+var configLogger = LoggerFactory.Create(b => b.AddConsole()).CreateLogger<Program>();
+configLogger.LogInformation("Переменные окружения БД: Host={Host}, Port={Port}, Database={Database}, User={User}", 
+    dbHost, dbPort, dbName, dbUser);
+
+string connectionString;
+if (!string.IsNullOrEmpty(dbHost) && !string.IsNullOrEmpty(dbUser) && !string.IsNullOrEmpty(dbPassword))
+{
+    // Используем переменные окружения для Railway/Render
+    connectionString = $"Host={dbHost};Port={dbPort ?? "5432"};Database={dbName ?? "shop_db"};Username={dbUser};Password={dbPassword};SSL Mode=Require;Trust Server Certificate=true";
+    configLogger.LogInformation("Используем переменные окружения для подключения к БД");
+}
+else
+{
+    // Fallback на локальную конфигурацию
+    connectionString = builder.Configuration.GetConnectionString("DefaultConnection") 
+        ?? "Host=localhost;Port=5432;Database=shop_db;Username=postgres;Password=password";
+    configLogger.LogInformation("Используем локальную конфигурацию для подключения к БД");
+}
+
 builder.Services.AddDbContext<ShopDbContext>(options =>
 {
-    options.UseNpgsql(connectionString);
+    options.UseNpgsql(connectionString, npgsqlOptions =>
+    {
+        npgsqlOptions.EnableRetryOnFailure(
+            maxRetryCount: 3,
+            maxRetryDelay: TimeSpan.FromSeconds(30),
+            errorCodesToAdd: null);
+    });
 });
 // -----------------------------------
 
@@ -87,52 +113,67 @@ app.UseCors(x =>
 // --- ВОЗВРАЩАЮ ИМПОРТ ДАННЫХ ПРИ СТАРТЕ ---
 using (var scope = app.Services.CreateScope())
 {
-    var context = scope.ServiceProvider.GetRequiredService<ShopDbContext>();
-    var importService = scope.ServiceProvider.GetRequiredService<ProductXmlImportService>();
-    var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
-    // Проверяем, есть ли продукты в базе данных
-    var productsCount = await context.Products.CountAsync();
-    if (productsCount == 0)
+    try
     {
-        try
+        var context = scope.ServiceProvider.GetRequiredService<ShopDbContext>();
+        var importService = scope.ServiceProvider.GetRequiredService<ProductXmlImportService>();
+        var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
+        
+        // Проверяем подключение к БД
+        logger.LogInformation("Проверяем подключение к базе данных...");
+        await context.Database.CanConnectAsync();
+        logger.LogInformation("Подключение к базе данных успешно установлено");
+        
+        // Проверяем, есть ли продукты в базе данных
+        var productsCount = await context.Products.CountAsync();
+        if (productsCount == 0)
         {
-            var possiblePaths = new[]
+            try
             {
-                Path.Combine(Directory.GetCurrentDirectory(), "xml_files", "products_feed.xml"),
-                Path.Combine(Directory.GetCurrentDirectory(), "..", "..", "products_feed.xml"),
-                Path.Combine(Directory.GetCurrentDirectory(), "..", "products_feed.xml"),
-                Path.Combine(Directory.GetCurrentDirectory(), "products_feed.xml")
-            };
-            string? xmlPath = null;
-            foreach (var path in possiblePaths)
-            {
-                logger.LogInformation("Проверяем путь: {Path}", path);
-                if (File.Exists(path))
+                var possiblePaths = new[]
                 {
-                    xmlPath = path;
-                    logger.LogInformation("XML файл найден по пути: {Path}", path);
-                    break;
+                    Path.Combine(Directory.GetCurrentDirectory(), "xml_files", "products_feed.xml"),
+                    Path.Combine(Directory.GetCurrentDirectory(), "..", "..", "products_feed.xml"),
+                    Path.Combine(Directory.GetCurrentDirectory(), "..", "products_feed.xml"),
+                    Path.Combine(Directory.GetCurrentDirectory(), "products_feed.xml")
+                };
+                string? xmlPath = null;
+                foreach (var path in possiblePaths)
+                {
+                    logger.LogInformation("Проверяем путь: {Path}", path);
+                    if (File.Exists(path))
+                    {
+                        xmlPath = path;
+                        logger.LogInformation("XML файл найден по пути: {Path}", path);
+                        break;
+                    }
+                }
+                if (xmlPath != null)
+                {
+                    logger.LogInformation("Начинаем импорт данных из XML");
+                    await importService.ImportAll(xmlPath);
+                    logger.LogInformation("Данные успешно импортированы из XML файла");
+                }
+                else
+                {
+                    logger.LogWarning("XML файл не найден ни по одному из путей");
                 }
             }
-            if (xmlPath != null)
+            catch (Exception ex)
             {
-                logger.LogInformation("Начинаем импорт данных из XML");
-                await importService.ImportAll(xmlPath);
-                logger.LogInformation("Данные успешно импортированы из XML файла");
-            }
-            else
-            {
-                logger.LogWarning("XML файл не найден ни по одному из путей");
+                logger.LogError(ex, "Ошибка при импорте данных: {Message}", ex.Message);
             }
         }
-        catch (Exception ex)
+        else
         {
-            logger.LogError(ex, "Ошибка при импорте данных: {Message}", ex.Message);
+            logger.LogInformation("В базе данных уже есть {ProductsCount} продуктов", productsCount);
         }
     }
-    else
+    catch (Exception ex)
     {
-        logger.LogInformation("В базе данных уже есть {ProductsCount} продуктов", productsCount);
+        var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
+        logger.LogError(ex, "Критическая ошибка при подключении к базе данных: {Message}", ex.Message);
+        logger.LogError("Проверьте настройки переменных окружения: DB_HOST, DB_PORT, DB_NAME, DB_USER, DB_PASSWORD");
     }
 }
 // --------------------------------------------
