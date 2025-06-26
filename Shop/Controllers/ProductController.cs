@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Shop.Contracts;
 using Shop.Core.Abstractions;
+using Shop.Application.Services;
+using Shop.Core.Models;
+using Microsoft.Extensions.Logging;
 
 namespace Shop.Controllers
 {
@@ -9,51 +12,66 @@ namespace Shop.Controllers
     public class ProductsController : ControllerBase
     {
         private readonly IProductService _productService;
-        public ProductsController(IProductService productService)
+        private readonly ProductXmlImportService _importService;
+        private readonly TonometerXmlService _tonometerXmlService;
+        private readonly ILogger<ProductsController> _logger;
+        
+        public ProductsController(
+            IProductService productService, 
+            ProductXmlImportService importService,
+            TonometerXmlService tonometerXmlService,
+            ILogger<ProductsController> logger)
         {
             _productService = productService;
+            _importService = importService;
+            _tonometerXmlService = tonometerXmlService;
+            _logger = logger;
         }
 
         [HttpGet]
         public async Task<ActionResult<List<ProductsResponse>>> GetProducts()
         {
-            var products = await _productService.GetAllProducts();
-
-            var response = products.Select(b => new ProductsResponse(b.Id, b.Title, b.Description, b.Price, b.Count));
-
+            var products = await _tonometerXmlService.GetProductsFromFeed();
+            var response = products.Select(b => new ProductsResponse(
+                b.Id,
+                b.Name,
+                b.Description,
+                b.Price,
+                b.Vendor,
+                b.CountryOfOrigin,
+                b.Url,
+                b.CategoryId,
+                b.Category,
+                b.CurrencyId,
+                b.Pictures,
+                b.Available,
+                b.Params
+            ));
             return Ok(response);
         }
-        [HttpPost]
-        public async Task<ActionResult<Guid>> SaveProducts([FromBody] ProductsRequest request)
+
+        [HttpGet("category/{category}")]
+        public async Task<ActionResult<List<ProductsFilterResponse>>> GetProductsByCategory(string category)
         {
-            var (product, error) = Core.Models.Product.Create(
-                    Guid.NewGuid(),
-                    request.Title,
-                    request.Description,
-                    request.Price,
-                    request.Count);
-            if (!string.IsNullOrEmpty(error))
-            {
-                return BadRequest(error);
-            }
-
-            var productId = await _productService.CreateProduct(product);
-
-            return Ok(productId);
-        }
-        [HttpPut("{id:guid}")]
-        public async Task<ActionResult<Guid>> UpdateProduct(Guid id, [FromBody] ProductsRequest request)
-        {
-            var productId = await _productService.UpdateProduct(id, request.Title, request.Description, request.Price, request.Count);
-
-            return Ok(productId);
+            var products = await _tonometerXmlService.GetProductsByCategory(category);
+            var response = products.Select(b => new ProductsFilterResponse(
+                b.Id,
+                b.Name,
+                b.Description,
+                b.Price,
+                b.Vendor,
+                b.CountryOfOrigin,
+                b.Url,
+                b.CategoryId,
+                b.Category,
+                b.CurrencyId,
+                b.Pictures,
+                b.Available,
+                b.Params
+            ));
+            return Ok(response);
         }
 
-        [HttpDelete("{id:guid}")]
-        public async Task<ActionResult<Guid>> DeleteProduct(Guid id)
-        {
-            return Ok(await _productService.DeleteProduct(id));
-        }
 
     }
 }

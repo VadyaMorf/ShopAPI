@@ -10,32 +10,22 @@ namespace Shop.Core.Models
     public class Product
     {
         public const int Max_Titile_Lenght = 250;
-        private Product(Guid id, string title, string description, decimal price, decimal count)
-        {
-            Id = id;
-            Title = title;
-            Description = description;
-            Price = price;
-            Count = count; 
-        }
-        public Guid Id { get; }
+        // public Guid Id { get; }
         public string Title { get; } = string.Empty;
-        public string Description { get; } = string.Empty;
-        public decimal Price { get; }
         public decimal Count { get; }
 
-        public static (Product Product, string Error) Create(Guid id, string title, string description, decimal price, decimal count)
-        {
-            var error = string.Empty;
-
-            if (string.IsNullOrEmpty(title) || title.Length > Max_Titile_Lenght)
-            {
-                error = "Title can not be empty or longer then 250 symbols";
-            }
-
-            var product = new Product(id, title, description, price, count);
-
-            return (product, error);
-        }
+        public long Id { get; set; }
+        public string Name { get; set; } = string.Empty;
+        public string Description { get; set; } = string.Empty;
+        public decimal Price { get; set; }
+        public string Vendor { get; set; } = string.Empty;
+        public string CountryOfOrigin { get; set; } = string.Empty;
+        public string Url { get; set; } = string.Empty;
+        public long CategoryId { get; set; }
+        public string Category { get; set; } = string.Empty;
+        public string CurrencyId { get; set; } = string.Empty;
+        public List<string> Pictures { get; set; } = new List<string>();
+        public bool Available { get; set; }
+        public Dictionary<string, string> Params { get; set; } = new Dictionary<string, string>();
     }
 }

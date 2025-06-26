@@ -1,5 +1,5 @@
 ﻿using Shop.Application.Interfaces.Auth;
-using Shop.Application.Interfaces.Repositories;
+using Shop.Core.Abstractions;
 using Shop.Core.Models;
 using System;
 using System.Collections.Generic;

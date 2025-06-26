@@ -1,27 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Medtehnika\\backend\\Shop.API\\Shop\\Shop.csproj": {}
+    "C:\\Users\\vladg\\source\\repos\\ShopAPI\\Shop\\Shop.csproj": {}
   },
   "projects": {
-    "C:\\Medtehnika\\backend\\Shop.API\\Shop.Application\\Shop.Application.csproj": {
+    "C:\\Users\\vladg\\source\\repos\\ShopAPI\\Shop.Application\\Shop.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Medtehnika\\backend\\Shop.API\\Shop.Application\\Shop.Application.csproj",
+        "projectUniqueName": "C:\\Users\\vladg\\source\\repos\\ShopAPI\\Shop.Application\\Shop.Application.csproj",
         "projectName": "Shop.Application",
-        "projectPath": "C:\\Medtehnika\\backend\\Shop.API\\Shop.Application\\Shop.Application.csproj",
+        "projectPath": "C:\\Users\\vladg\\source\\repos\\ShopAPI\\Shop.Application\\Shop.Application.csproj",
         "packagesPath": "C:\\Users\\vladg\\.nuget\\packages\\",
-        "outputPath": "C:\\Medtehnika\\backend\\Shop.API\\Shop.Application\\obj\\",
+        "outputPath": "C:\\Users\\vladg\\source\\repos\\ShopAPI\\Shop.Application\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "D:\\Синкфуз\\WPF\\19.1.0.63\\ToolboxNuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
           "C:\\Users\\vladg\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Syncfusion Toolbox for WPF.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -35,8 +33,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Medtehnika\\backend\\Shop.API\\Shop.Core\\Shop.Core.csproj": {
-                "projectPath": "C:\\Medtehnika\\backend\\Shop.API\\Shop.Core\\Shop.Core.csproj"
+              "C:\\Users\\vladg\\source\\repos\\ShopAPI\\Shop.Core\\Shop.Core.csproj": {
+                "projectPath": "C:\\Users\\vladg\\source\\repos\\ShopAPI\\Shop.Core\\Shop.Core.csproj"
+              },
+              "C:\\Users\\vladg\\source\\repos\\ShopAPI\\Shop.DataAccess\\Shop.DataAccess.csproj": {
+                "projectPath": "C:\\Users\\vladg\\source\\repos\\ShopAPI\\Shop.DataAccess\\Shop.DataAccess.csproj"
               }
             }
           }
@@ -50,7 +51,8 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        }
+        },
+        "SdkAnalysisLevel": "9.0.100"
       },
       "frameworks": {
         "net8.0": {
@@ -71,28 +73,26 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.203/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Medtehnika\\backend\\Shop.API\\Shop.Core\\Shop.Core.csproj": {
+    "C:\\Users\\vladg\\source\\repos\\ShopAPI\\Shop.Core\\Shop.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Medtehnika\\backend\\Shop.API\\Shop.Core\\Shop.Core.csproj",
+        "projectUniqueName": "C:\\Users\\vladg\\source\\repos\\ShopAPI\\Shop.Core\\Shop.Core.csproj",
         "projectName": "Shop.Core",
-        "projectPath": "C:\\Medtehnika\\backend\\Shop.API\\Shop.Core\\Shop.Core.csproj",
+        "projectPath": "C:\\Users\\vladg\\source\\repos\\ShopAPI\\Shop.Core\\Shop.Core.csproj",
         "packagesPath": "C:\\Users\\vladg\\.nuget\\packages\\",
-        "outputPath": "C:\\Medtehnika\\backend\\Shop.API\\Shop.Core\\obj\\",
+        "outputPath": "C:\\Users\\vladg\\source\\repos\\ShopAPI\\Shop.Core\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "D:\\Синкфуз\\WPF\\19.1.0.63\\ToolboxNuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
           "C:\\Users\\vladg\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Syncfusion Toolbox for WPF.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -117,7 +117,8 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        }
+        },
+        "SdkAnalysisLevel": "9.0.100"
       },
       "frameworks": {
         "net8.0": {
@@ -138,28 +139,26 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.203/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Medtehnika\\backend\\Shop.API\\Shop.DataAccess\\Shop.DataAccess.csproj": {
+    "C:\\Users\\vladg\\source\\repos\\ShopAPI\\Shop.DataAccess\\Shop.DataAccess.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Medtehnika\\backend\\Shop.API\\Shop.DataAccess\\Shop.DataAccess.csproj",
+        "projectUniqueName": "C:\\Users\\vladg\\source\\repos\\ShopAPI\\Shop.DataAccess\\Shop.DataAccess.csproj",
         "projectName": "Shop.DataAccess",
-        "projectPath": "C:\\Medtehnika\\backend\\Shop.API\\Shop.DataAccess\\Shop.DataAccess.csproj",
+        "projectPath": "C:\\Users\\vladg\\source\\repos\\ShopAPI\\Shop.DataAccess\\Shop.DataAccess.csproj",
         "packagesPath": "C:\\Users\\vladg\\.nuget\\packages\\",
-        "outputPath": "C:\\Medtehnika\\backend\\Shop.API\\Shop.DataAccess\\obj\\",
+        "outputPath": "C:\\Users\\vladg\\source\\repos\\ShopAPI\\Shop.DataAccess\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "D:\\Синкфуз\\WPF\\19.1.0.63\\ToolboxNuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
           "C:\\Users\\vladg\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Syncfusion Toolbox for WPF.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -173,11 +172,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Medtehnika\\backend\\Shop.API\\Shop.Application\\Shop.Application.csproj": {
-                "projectPath": "C:\\Medtehnika\\backend\\Shop.API\\Shop.Application\\Shop.Application.csproj"
-              },
-              "C:\\Medtehnika\\backend\\Shop.API\\Shop.Core\\Shop.Core.csproj": {
-                "projectPath": "C:\\Medtehnika\\backend\\Shop.API\\Shop.Core\\Shop.Core.csproj"
+              "C:\\Users\\vladg\\source\\repos\\ShopAPI\\Shop.Core\\Shop.Core.csproj": {
+                "projectPath": "C:\\Users\\vladg\\source\\repos\\ShopAPI\\Shop.Core\\Shop.Core.csproj"
               }
             }
           }
@@ -191,7 +187,8 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        }
+        },
+        "SdkAnalysisLevel": "9.0.100"
       },
       "frameworks": {
         "net8.0": {
@@ -210,6 +207,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[8.0.8, )"
+            },
+            "Microsoft.Extensions.Configuration.Json": {
+              "target": "Package",
+              "version": "[8.0.0, )"
             },
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
@@ -232,28 +233,26 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.203/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Medtehnika\\backend\\Shop.API\\Shop.Infastracture\\Shop.Infastracture.csproj": {
+    "C:\\Users\\vladg\\source\\repos\\ShopAPI\\Shop.Infastracture\\Shop.Infastracture.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Medtehnika\\backend\\Shop.API\\Shop.Infastracture\\Shop.Infastracture.csproj",
+        "projectUniqueName": "C:\\Users\\vladg\\source\\repos\\ShopAPI\\Shop.Infastracture\\Shop.Infastracture.csproj",
         "projectName": "Shop.Infastracture",
-        "projectPath": "C:\\Medtehnika\\backend\\Shop.API\\Shop.Infastracture\\Shop.Infastracture.csproj",
+        "projectPath": "C:\\Users\\vladg\\source\\repos\\ShopAPI\\Shop.Infastracture\\Shop.Infastracture.csproj",
         "packagesPath": "C:\\Users\\vladg\\.nuget\\packages\\",
-        "outputPath": "C:\\Medtehnika\\backend\\Shop.API\\Shop.Infastracture\\obj\\",
+        "outputPath": "C:\\Users\\vladg\\source\\repos\\ShopAPI\\Shop.Infastracture\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "D:\\Синкфуз\\WPF\\19.1.0.63\\ToolboxNuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
           "C:\\Users\\vladg\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Syncfusion Toolbox for WPF.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -267,11 +266,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Medtehnika\\backend\\Shop.API\\Shop.Application\\Shop.Application.csproj": {
-                "projectPath": "C:\\Medtehnika\\backend\\Shop.API\\Shop.Application\\Shop.Application.csproj"
+              "C:\\Users\\vladg\\source\\repos\\ShopAPI\\Shop.Application\\Shop.Application.csproj": {
+                "projectPath": "C:\\Users\\vladg\\source\\repos\\ShopAPI\\Shop.Application\\Shop.Application.csproj"
               },
-              "C:\\Medtehnika\\backend\\Shop.API\\Shop.Core\\Shop.Core.csproj": {
-                "projectPath": "C:\\Medtehnika\\backend\\Shop.API\\Shop.Core\\Shop.Core.csproj"
+              "C:\\Users\\vladg\\source\\repos\\ShopAPI\\Shop.Core\\Shop.Core.csproj": {
+                "projectPath": "C:\\Users\\vladg\\source\\repos\\ShopAPI\\Shop.Core\\Shop.Core.csproj"
               }
             }
           }
@@ -285,7 +284,8 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        }
+        },
+        "SdkAnalysisLevel": "9.0.100"
       },
       "frameworks": {
         "net8.0": {
@@ -316,28 +316,26 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.203/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Medtehnika\\backend\\Shop.API\\Shop\\Shop.csproj": {
+    "C:\\Users\\vladg\\source\\repos\\ShopAPI\\Shop\\Shop.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Medtehnika\\backend\\Shop.API\\Shop\\Shop.csproj",
+        "projectUniqueName": "C:\\Users\\vladg\\source\\repos\\ShopAPI\\Shop\\Shop.csproj",
         "projectName": "Shop",
-        "projectPath": "C:\\Medtehnika\\backend\\Shop.API\\Shop\\Shop.csproj",
+        "projectPath": "C:\\Users\\vladg\\source\\repos\\ShopAPI\\Shop\\Shop.csproj",
         "packagesPath": "C:\\Users\\vladg\\.nuget\\packages\\",
-        "outputPath": "C:\\Medtehnika\\backend\\Shop.API\\Shop\\obj\\",
+        "outputPath": "C:\\Users\\vladg\\source\\repos\\ShopAPI\\Shop\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "D:\\Синкфуз\\WPF\\19.1.0.63\\ToolboxNuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
           "C:\\Users\\vladg\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Syncfusion Toolbox for WPF.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -351,14 +349,14 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Medtehnika\\backend\\Shop.API\\Shop.Application\\Shop.Application.csproj": {
-                "projectPath": "C:\\Medtehnika\\backend\\Shop.API\\Shop.Application\\Shop.Application.csproj"
+              "C:\\Users\\vladg\\source\\repos\\ShopAPI\\Shop.Application\\Shop.Application.csproj": {
+                "projectPath": "C:\\Users\\vladg\\source\\repos\\ShopAPI\\Shop.Application\\Shop.Application.csproj"
               },
-              "C:\\Medtehnika\\backend\\Shop.API\\Shop.DataAccess\\Shop.DataAccess.csproj": {
-                "projectPath": "C:\\Medtehnika\\backend\\Shop.API\\Shop.DataAccess\\Shop.DataAccess.csproj"
+              "C:\\Users\\vladg\\source\\repos\\ShopAPI\\Shop.DataAccess\\Shop.DataAccess.csproj": {
+                "projectPath": "C:\\Users\\vladg\\source\\repos\\ShopAPI\\Shop.DataAccess\\Shop.DataAccess.csproj"
               },
-              "C:\\Medtehnika\\backend\\Shop.API\\Shop.Infastracture\\Shop.Infastracture.csproj": {
-                "projectPath": "C:\\Medtehnika\\backend\\Shop.API\\Shop.Infastracture\\Shop.Infastracture.csproj"
+              "C:\\Users\\vladg\\source\\repos\\ShopAPI\\Shop.Infastracture\\Shop.Infastracture.csproj": {
+                "projectPath": "C:\\Users\\vladg\\source\\repos\\ShopAPI\\Shop.Infastracture\\Shop.Infastracture.csproj"
               }
             }
           }
@@ -372,7 +370,8 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        }
+        },
+        "SdkAnalysisLevel": "9.0.100"
       },
       "frameworks": {
         "net8.0": {
@@ -412,7 +411,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.203/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

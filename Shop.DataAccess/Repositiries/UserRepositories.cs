@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-using Shop.Application.Interfaces.Repositories;
 using Shop.Core.Models;
 using Shop.DataAccess.Entities;
 using System;
@@ -8,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Shop.Core.Abstractions;
 
 namespace Shop.DataAccess.Repositiries
 {

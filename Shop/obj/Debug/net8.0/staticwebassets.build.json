@@ -1,11 +1,12 @@
 {
   "Version": 1,
-  "Hash": "orLq3EVQsS/YSj5JBM25GXO4EeyI6K1B40PLlt7hq7A=",
+  "Hash": "UYPZF/GrqKIQ1wqY33h7e+Z2Hhekf7/qjhb9m/jTz8s=",
   "Source": "Shop",
   "BasePath": "_content/Shop",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
   "DiscoveryPatterns": [],
-  "Assets": []
+  "Assets": [],
+  "Endpoints": []
 }

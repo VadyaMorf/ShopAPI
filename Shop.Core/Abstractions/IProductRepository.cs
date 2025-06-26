@@ -9,9 +9,10 @@ namespace Shop.Core.Abstractions
 {
     public interface IProductRepository
     {
-        Task<Guid> Create(Product product);
-        Task<Guid> Delete(Guid id);
+        Task<long> Create(Product product);
+        Task<long> Delete(long id);
         Task<List<Product>> Get();
-        Task<Guid> Update(Guid id, string title, string description, decimal price, decimal count);
+        Task<List<Product>> GetByCategory(string category);
+        Task<long> Update(long id, Product product);
     }
 }

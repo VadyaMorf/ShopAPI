@@ -4,13 +4,13 @@ services:
     container_name: postgres
     image: postgres:latest
     environment:
-      POSTGRES_DB: "shopreseiledb"
+      POSTGRES_DB: "shopreseile_final"
       POSTGRES_USER: "postgres"
-      POSTGRES_PASSWORD: "123"
+      POSTGRES_PASSWORD: "1234"
     volumes:
       - postgres-data:/var/lib/postgresql/data
     ports:
-      - "5433:5433"
+      - "5432:5432"
 
 volumes:
   postgres-data:

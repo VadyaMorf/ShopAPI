@@ -1,27 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Medtehnika\\backend\\Shop.API\\Shop.Core\\Shop.Core.csproj": {}
+    "C:\\Users\\vladg\\source\\repos\\ShopAPI\\Shop.Core\\Shop.Core.csproj": {}
   },
   "projects": {
-    "C:\\Medtehnika\\backend\\Shop.API\\Shop.Core\\Shop.Core.csproj": {
+    "C:\\Users\\vladg\\source\\repos\\ShopAPI\\Shop.Core\\Shop.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Medtehnika\\backend\\Shop.API\\Shop.Core\\Shop.Core.csproj",
+        "projectUniqueName": "C:\\Users\\vladg\\source\\repos\\ShopAPI\\Shop.Core\\Shop.Core.csproj",
         "projectName": "Shop.Core",
-        "projectPath": "C:\\Medtehnika\\backend\\Shop.API\\Shop.Core\\Shop.Core.csproj",
+        "projectPath": "C:\\Users\\vladg\\source\\repos\\ShopAPI\\Shop.Core\\Shop.Core.csproj",
         "packagesPath": "C:\\Users\\vladg\\.nuget\\packages\\",
-        "outputPath": "C:\\Medtehnika\\backend\\Shop.API\\Shop.Core\\obj\\",
+        "outputPath": "C:\\Users\\vladg\\source\\repos\\ShopAPI\\Shop.Core\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "D:\\Синкфуз\\WPF\\19.1.0.63\\ToolboxNuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
           "C:\\Users\\vladg\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Syncfusion Toolbox for WPF.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -46,7 +44,8 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        }
+        },
+        "SdkAnalysisLevel": "9.0.100"
       },
       "frameworks": {
         "net8.0": {
@@ -67,7 +66,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.203/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

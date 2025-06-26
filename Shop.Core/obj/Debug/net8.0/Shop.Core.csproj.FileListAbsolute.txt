@@ -10,3 +10,15 @@ C:\Medtehnika\backend\Shop.API\Shop.Core\obj\Debug\net8.0\refint\Shop.Core.dll
 C:\Medtehnika\backend\Shop.API\Shop.Core\obj\Debug\net8.0\Shop.Core.pdb
 C:\Medtehnika\backend\Shop.API\Shop.Core\obj\Debug\net8.0\ref\Shop.Core.dll
 C:\Medtehnika\backend\Shop.API\Shop.Core\obj\Debug\net8.0\Shop.Core.sourcelink.json
+C:\Users\vladg\source\repos\ShopAPI\Shop.Core\bin\Debug\net8.0\Shop.Core.deps.json
+C:\Users\vladg\source\repos\ShopAPI\Shop.Core\bin\Debug\net8.0\Shop.Core.dll
+C:\Users\vladg\source\repos\ShopAPI\Shop.Core\bin\Debug\net8.0\Shop.Core.pdb
+C:\Users\vladg\source\repos\ShopAPI\Shop.Core\obj\Debug\net8.0\Shop.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\vladg\source\repos\ShopAPI\Shop.Core\obj\Debug\net8.0\Shop.Core.AssemblyInfoInputs.cache
+C:\Users\vladg\source\repos\ShopAPI\Shop.Core\obj\Debug\net8.0\Shop.Core.AssemblyInfo.cs
+C:\Users\vladg\source\repos\ShopAPI\Shop.Core\obj\Debug\net8.0\Shop.Core.csproj.CoreCompileInputs.cache
+C:\Users\vladg\source\repos\ShopAPI\Shop.Core\obj\Debug\net8.0\Shop.Core.sourcelink.json
+C:\Users\vladg\source\repos\ShopAPI\Shop.Core\obj\Debug\net8.0\Shop.Core.dll
+C:\Users\vladg\source\repos\ShopAPI\Shop.Core\obj\Debug\net8.0\refint\Shop.Core.dll
+C:\Users\vladg\source\repos\ShopAPI\Shop.Core\obj\Debug\net8.0\Shop.Core.pdb
+C:\Users\vladg\source\repos\ShopAPI\Shop.Core\obj\Debug\net8.0\ref\Shop.Core.dll

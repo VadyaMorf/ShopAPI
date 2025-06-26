@@ -2,7 +2,7 @@
 using Shop.Core.Abstractions;
 using Shop.Core.Models;
 using Shop.DataAccess.Entities;
-
+using System.Text.Json;
 
 namespace Shop.DataAccess.Repositiries
 {
@@ -16,47 +16,101 @@ namespace Shop.DataAccess.Repositiries
 
         public async Task<List<Product>> Get()
         {
-            var productEntities = await EntityFrameworkQueryableExtensions
-                .AsNoTracking(_context.Products)
-                .ToListAsync();
-
-            var products = productEntities.Select(b => Product.Create(b.Id, b.Title, b.Description, b.Price, b.Count).Product).ToList();
-
+            var productEntities = await _context.Products.AsNoTracking().ToListAsync();
+            var products = productEntities.Select(b => new Product
+            {
+                Id = b.Id,
+                Name = b.Name,
+                Description = b.Description,
+                Price = b.Price,
+                Vendor = b.Vendor,
+                CountryOfOrigin = b.CountryOfOrigin,
+                Url = b.Url,
+                CategoryId = b.CategoryId,
+                Category = b.Category,
+                CurrencyId = b.CurrencyId,
+                Pictures = string.IsNullOrEmpty(b.Pictures) ? new List<string>() : JsonSerializer.Deserialize<List<string>>(b.Pictures),
+                Available = b.Available,
+                Params = string.IsNullOrEmpty(b.Params) ? new Dictionary<string, string>() : JsonSerializer.Deserialize<Dictionary<string, string>>(b.Params)
+            }).ToList();
             return products;
         }
 
-        public async Task<Guid> Create(Product product)
+        public async Task<List<Product>> GetByCategory(string category)
+        {
+            var productEntities = await _context.Products
+                .AsNoTracking()
+                .Where(p => p.Category.ToLower().Contains(category.ToLower()))
+                .ToListAsync();
+                
+            var products = productEntities.Select(b => new Product
+            {
+                Id = b.Id,
+                Name = b.Name,
+                Description = b.Description,
+                Price = b.Price,
+                Vendor = b.Vendor,
+                CountryOfOrigin = b.CountryOfOrigin,
+                Url = b.Url,
+                CategoryId = b.CategoryId,
+                Category = b.Category,
+                CurrencyId = b.CurrencyId,
+                Pictures = string.IsNullOrEmpty(b.Pictures) ? new List<string>() : JsonSerializer.Deserialize<List<string>>(b.Pictures),
+                Available = b.Available,
+                Params = string.IsNullOrEmpty(b.Params) ? new Dictionary<string, string>() : JsonSerializer.Deserialize<Dictionary<string, string>>(b.Params)
+            }).ToList();
+            return products;
+        }
+
+        public async Task<long> Create(Product product)
         {
             var productEntity = new ProductEntity
             {
                 Id = product.Id,
-                Title = product.Title,
+                Name = product.Name,
                 Description = product.Description,
                 Price = product.Price,
-                Count = product.Count
+                Vendor = product.Vendor,
+                CountryOfOrigin = product.CountryOfOrigin,
+                Url = product.Url,
+                CategoryId = product.CategoryId,
+                Category = product.Category,
+                CurrencyId = product.CurrencyId,
+                Pictures = JsonSerializer.Serialize(product.Pictures),
+                Available = product.Available,
+                Params = JsonSerializer.Serialize(product.Params)
             };
             await _context.Products.AddAsync(productEntity);
             await _context.SaveChangesAsync();
-
             return productEntity.Id;
         }
 
-        public async Task<Guid> Update(Guid id, string title, string descriprion, decimal price, decimal count)
+        public async Task<long> Update(long id, Product product)
         {
-            await _context.Products.Where(b => b.Id == id).
-                ExecuteUpdateAsync(s => s.
-                SetProperty(b => b.Title, b => title).
-                SetProperty(b => b.Description, b => descriprion).
-                SetProperty(b => b.Price, b => price).
-                SetProperty(b => b.Count, b => count));
-
-            return id;
+            var entity = await _context.Products.FirstOrDefaultAsync(b => b.Id == id);
+            if (entity == null) return 0;
+            entity.Name = product.Name;
+            entity.Description = product.Description;
+            entity.Price = product.Price;
+            entity.Vendor = product.Vendor;
+            entity.CountryOfOrigin = product.CountryOfOrigin;
+            entity.Url = product.Url;
+            entity.CategoryId = product.CategoryId;
+            entity.Category = product.Category;
+            entity.CurrencyId = product.CurrencyId;
+            entity.Pictures = JsonSerializer.Serialize(product.Pictures);
+            entity.Available = product.Available;
+            entity.Params = JsonSerializer.Serialize(product.Params);
+            await _context.SaveChangesAsync();
+            return entity.Id;
         }
 
-        public async Task<Guid> Delete(Guid id)
+        public async Task<long> Delete(long id)
         {
-            await _context.Products.Where(b => b.Id == id).ExecuteDeleteAsync();
-
+            var entity = await _context.Products.FirstOrDefaultAsync(b => b.Id == id);
+            if (entity == null) return 0;
+            _context.Products.Remove(entity);
+            await _context.SaveChangesAsync();
             return id;
         }
     }

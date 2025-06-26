@@ -8,10 +8,18 @@ namespace Shop.DataAccess.Entities
 {
     public class ProductEntity
     {
-        public Guid Id { get; set; }
-        public string Title { get; set; } = string.Empty;
+        public long Id { get; set; }
+        public string Name { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
-        public decimal Price { get; set; } = 0;
-        public decimal Count { get; set; } = 0;
+        public decimal Price { get; set; }
+        public string Vendor { get; set; } = string.Empty;
+        public string CountryOfOrigin { get; set; } = string.Empty;
+        public string Url { get; set; } = string.Empty;
+        public long CategoryId { get; set; }
+        public string Category { get; set; } = string.Empty;
+        public string CurrencyId { get; set; } = string.Empty;
+        public string Pictures { get; set; } = string.Empty; // JSON-массив
+        public bool Available { get; set; }
+        public string Params { get; set; } = string.Empty; // JSON-словарь
     }
 }
