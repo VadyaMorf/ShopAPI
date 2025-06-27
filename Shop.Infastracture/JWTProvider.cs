@@ -25,11 +25,6 @@ namespace Shop.Infastracture
         
         public string GenerateToken(User user)
         {
-            _logger.LogInformation("JWTProvider: Длина SecretKey: {Length}, Битовый размер: {BitSize}", 
-                _options.SecretKey.Length, _options.SecretKey.Length * 8);
-            _logger.LogInformation("JWTProvider: Первые 10 символов SecretKey: {KeyStart}", 
-                _options.SecretKey.Substring(0, Math.Min(10, _options.SecretKey.Length)));
-            
             Claim[] claims = [new("userId", user.Id.ToString())];
 
             var signingCredential = new SigningCredentials(

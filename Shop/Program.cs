@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Shop.Application.Interfaces.Auth;
+using Shop.Application.Interfaces;
 using Shop.Application.Services;
 using Shop.Core.Abstractions;
 using Shop.DataAccess;
@@ -84,6 +85,7 @@ builder.Services.AddScoped<UserService>();
 
 builder.Services.AddScoped<IJWTProvider, JWTProvider>();
 builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
+builder.Services.AddScoped<IBarcodeService, BarcodeService>();
 
 // Добавляем JWT аутентификацию
 var jwtOptions = builder.Configuration.GetSection(nameof(JwtOptions)).Get<JwtOptions>();
@@ -108,9 +110,6 @@ if (!string.IsNullOrEmpty(envSecret))
 {
     jwtOptions.SecretKey = envSecret;
     configLogger.LogInformation("Используем JWT секрет из переменной окружения (длина: {Length})", envSecret.Length);
-    configLogger.LogInformation("Первые 10 символов ключа: {KeyStart}", envSecret.Substring(0, Math.Min(10, envSecret.Length)));
-    configLogger.LogInformation("Последние 10 символов ключа: {KeyEnd}", envSecret.Substring(Math.Max(0, envSecret.Length - 10)));
-    configLogger.LogInformation("Битовый размер ключа: {BitSize}", envSecret.Length * 8);
     
     // Проверяем минимальную длину ключа
     if (envSecret.Length < 32)
@@ -167,6 +166,7 @@ app.UseAuthorization();
 
 app.MapControllers();
 app.MapUsersEndpoints();
+app.MapBarcodeEndpoints();
 
 app.UseCors(x =>
 {
