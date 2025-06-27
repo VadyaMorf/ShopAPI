@@ -26,6 +26,7 @@ if (!string.IsNullOrEmpty(port))
 // --------------------------------------------------
 
 builder.Services.AddAutoMapper(typeof(Program));
+builder.Services.AddAutoMapper(typeof(Shop.DataAccess.AutoMapperProfile));
 services.Configure<JwtOptions>(builder.Configuration.GetSection(nameof(JwtOptions)));
 
 builder.Services.AddControllers();
