@@ -1,6 +1,7 @@
 ﻿using Shop.Application.Interfaces.Auth;
 using Shop.Core.Abstractions;
 using Shop.Core.Models;
+using Shop.Application.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,16 +21,16 @@ namespace Shop.Application.Services
             _passwordHasher = passwordHasher;
             _provider = provider;
         }
-        public async Task Register(string userName, string email, string password)
+        public async Task Register(string userName, string email, string password, string firstName, string lastName, string phoneNumber)
         {
             var hashPassword = _passwordHasher.Generate(password);
 
-            var user = User.Create(Guid.NewGuid(), userName, email, hashPassword);
+            var user = User.Create(Guid.NewGuid(), userName, hashPassword, email, firstName, lastName, phoneNumber);
 
             await _repository.Add(user);
         }
 
-        public async Task<string> Login(string email, string password)
+        public async Task<LoginResponse> Login(string email, string password)
         {
             var user = await _repository.GetByEmail(email);
 
@@ -41,7 +42,15 @@ namespace Shop.Application.Services
             }
 
             var token = _provider.GenerateToken(user);
-            return token;
+            
+            return new LoginResponse(
+                token,
+                user.Id,
+                user.UserName,
+                user.Email,
+                user.FirstName,
+                user.LastName,
+                user.PhoneNumber);
         }
     }
 }

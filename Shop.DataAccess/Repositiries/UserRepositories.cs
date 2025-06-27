@@ -28,7 +28,10 @@ namespace Shop.DataAccess.Repositiries
                 Id = user.Id,
                 UserName = user.UserName,
                 PasswordHash = user.PasswordHash,
-                Email = user.Email
+                Email = user.Email,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                PhoneNumber = user.PhoneNumber
             };
 
             await _context.Users.AddAsync(userEntity);

@@ -8,6 +8,8 @@ using Shop.Endpoints;
 using Shop.Infastracture;
 using AutoMapper;
 using Microsoft.Extensions.Logging;
+using Shop.Extensions;
+using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 var services = builder.Services;
@@ -80,6 +82,13 @@ builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<IJWTProvider, JWTProvider>();
 builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
 
+// Добавляем JWT аутентификацию
+var jwtOptions = builder.Configuration.GetSection(nameof(JwtOptions)).Get<JwtOptions>();
+if (jwtOptions != null)
+{
+    builder.Services.AddApiAuthentication(Options.Create(jwtOptions));
+}
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
@@ -97,8 +106,9 @@ app.UseCookiePolicy(new CookiePolicyOptions
     Secure = CookieSecurePolicy.Always
 });
 
-app.UseAuthorization();
+// Исправляем порядок middleware
 app.UseAuthentication();
+app.UseAuthorization();
 
 app.MapControllers();
 app.MapUsersEndpoints();

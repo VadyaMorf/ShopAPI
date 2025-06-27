@@ -248,5 +248,4 @@ C:\Users\vladg\source\repos\ShopAPI\Shop\obj\Debug\net8.0\staticwebassets.pack.j
 C:\Users\vladg\source\repos\ShopAPI\Shop\obj\Debug\net8.0\Shop.csproj.Up2Date
 C:\Users\vladg\source\repos\ShopAPI\Shop\obj\Debug\net8.0\Shop.genruntimeconfig.cache
 C:\Users\vladg\source\repos\ShopAPI\Shop\obj\Debug\net8.0\ref\Shop.dll
-C:\Users\vladg\source\repos\ShopAPI\Shop\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 C:\Users\vladg\source\repos\ShopAPI\Shop\bin\Debug\net8.0\appsettings.Production.json

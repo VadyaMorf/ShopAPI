@@ -1,4 +1,5 @@
 ﻿using Shop.Application.Services;
+using Shop.Application.Models;
 using Shop.Contracts;
 
 namespace Shop.Endpoints
@@ -14,17 +15,23 @@ namespace Shop.Endpoints
 
         private static async Task<IResult> Register(RegisterUserRequest registerUserRequest, UserService userService)
         {
-            await userService.Register(registerUserRequest.UserName, registerUserRequest.Email, registerUserRequest.Password);
+            await userService.Register(
+                registerUserRequest.UserName, 
+                registerUserRequest.Email, 
+                registerUserRequest.Password,
+                registerUserRequest.FirstName,
+                registerUserRequest.LastName,
+                registerUserRequest.PhoneNumber);
 
             return Results.Ok();
         }
         private static async Task<IResult> Login(LoginRequest request, UserService userService, HttpContext context)
         {
-            var token = await userService.Login(request.Email, request.Password);
+            var loginResponse = await userService.Login(request.Email, request.Password);
 
-            context.Response.Cookies.Append("user-cookies", token);
+            context.Response.Cookies.Append("user-cookies", loginResponse.Token);
 
-            return Results.Ok();
+            return Results.Ok(loginResponse);
         }
     }
 }
