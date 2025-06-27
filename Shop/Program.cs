@@ -17,6 +17,9 @@ var services = builder.Services;
 // Добавляем поддержку переменных окружения
 builder.Configuration.AddEnvironmentVariables();
 
+// Добавляем поддержку замены переменных окружения в конфигурации
+builder.Configuration.AddEnvironmentVariables(prefix: "");
+
 // --- Railway/Render: поддержка переменной PORT ---
 var port = Environment.GetEnvironmentVariable("PORT");
 if (!string.IsNullOrEmpty(port))
@@ -89,6 +92,19 @@ var jwtOptions = builder.Configuration.GetSection(nameof(JwtOptions)).Get<JwtOpt
 var envSecret = Environment.GetEnvironmentVariable("JWT_SECRET") 
     ?? Environment.GetEnvironmentVariable("JWT_SECRET_KEY")
     ?? Environment.GetEnvironmentVariable("JWT_KEY");
+
+// Заменяем placeholder в SecretKey если он есть
+if (jwtOptions != null && !string.IsNullOrEmpty(jwtOptions.SecretKey) && jwtOptions.SecretKey.StartsWith("${"))
+{
+    var placeholderName = jwtOptions.SecretKey.Trim('$', '{', '}');
+    var placeholderValue = Environment.GetEnvironmentVariable(placeholderName);
+    if (!string.IsNullOrEmpty(placeholderValue))
+    {
+        jwtOptions.SecretKey = placeholderValue;
+        configLogger.LogInformation("Заменён placeholder {Placeholder} на значение из переменной окружения", placeholderName);
+    }
+}
+
 if (!string.IsNullOrEmpty(envSecret))
 {
     jwtOptions.SecretKey = envSecret;
