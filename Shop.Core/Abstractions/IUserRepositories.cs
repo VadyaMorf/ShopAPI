@@ -7,6 +7,6 @@ namespace Shop.Core.Abstractions
     {
         Task Add(User user);
         Task<User> GetByEmail(string email);
-        Task<User?> GetByIdAsync(int id);
+        Task<User?> GetByIdAsync(Guid id);
     }
 } 

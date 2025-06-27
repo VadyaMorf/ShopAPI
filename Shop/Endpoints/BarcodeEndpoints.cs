@@ -16,7 +16,7 @@ public static class BarcodeEndpoints
             HttpContext context) =>
         {
             var userId = context.User.FindFirst("userId")?.Value;
-            if (string.IsNullOrEmpty(userId) || !int.TryParse(userId, out var id))
+            if (string.IsNullOrEmpty(userId) || !Guid.TryParse(userId, out var id))
             {
                 return Results.Unauthorized();
             }

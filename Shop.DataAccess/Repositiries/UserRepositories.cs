@@ -45,9 +45,9 @@ namespace Shop.DataAccess.Repositiries
             return _mapper.Map<User>(userEntity);
         }
 
-        public async Task<User?> GetByIdAsync(int id)
+        public async Task<User?> GetByIdAsync(Guid id)
         {
-            var userEntity = await _context.Users.AsNoTracking().FirstOrDefaultAsync(x => x.Id == Guid.Parse(id.ToString()));
+            var userEntity = await _context.Users.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
             return userEntity != null ? _mapper.Map<User>(userEntity) : null;
         }
     }
