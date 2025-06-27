@@ -85,6 +85,12 @@ builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
 
 // Добавляем JWT аутентификацию
 var jwtOptions = builder.Configuration.GetSection(nameof(JwtOptions)).Get<JwtOptions>();
+// Пытаемся получить секретный ключ из переменной окружения
+var envSecret = Environment.GetEnvironmentVariable("JWT_SECRET");
+if (!string.IsNullOrEmpty(envSecret))
+{
+    jwtOptions.SecretKey = envSecret;
+}
 if (jwtOptions != null)
 {
     builder.Services.AddApiAuthentication(Options.Create(jwtOptions));
