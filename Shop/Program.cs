@@ -86,10 +86,17 @@ builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
 // Добавляем JWT аутентификацию
 var jwtOptions = builder.Configuration.GetSection(nameof(JwtOptions)).Get<JwtOptions>();
 // Пытаемся получить секретный ключ из переменной окружения
-var envSecret = Environment.GetEnvironmentVariable("JWT_SECRET");
+var envSecret = Environment.GetEnvironmentVariable("JWT_SECRET") 
+    ?? Environment.GetEnvironmentVariable("JWT_SECRET_KEY")
+    ?? Environment.GetEnvironmentVariable("JWT_KEY");
 if (!string.IsNullOrEmpty(envSecret))
 {
     jwtOptions.SecretKey = envSecret;
+    configLogger.LogInformation("Используем JWT секрет из переменной окружения (длина: {Length})", envSecret.Length);
+}
+else
+{
+    configLogger.LogWarning("JWT секрет из переменной окружения не найден, используем из appsettings.json (длина: {Length})", jwtOptions.SecretKey.Length);
 }
 if (jwtOptions != null)
 {
