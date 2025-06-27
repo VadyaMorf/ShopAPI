@@ -93,10 +93,29 @@ if (!string.IsNullOrEmpty(envSecret))
 {
     jwtOptions.SecretKey = envSecret;
     configLogger.LogInformation("Используем JWT секрет из переменной окружения (длина: {Length})", envSecret.Length);
+    configLogger.LogInformation("Первые 10 символов ключа: {KeyStart}", envSecret.Substring(0, Math.Min(10, envSecret.Length)));
+    configLogger.LogInformation("Последние 10 символов ключа: {KeyEnd}", envSecret.Substring(Math.Max(0, envSecret.Length - 10)));
+    configLogger.LogInformation("Битовый размер ключа: {BitSize}", envSecret.Length * 8);
+    
+    // Проверяем минимальную длину ключа
+    if (envSecret.Length < 32)
+    {
+        configLogger.LogError("JWT ключ слишком короткий! Минимальная длина: 32 символа, текущая: {Length}", envSecret.Length);
+    }
+    
+    // Проверяем на наличие пробелов или невидимых символов
+    if (envSecret.Trim() != envSecret)
+    {
+        configLogger.LogWarning("JWT ключ содержит пробелы в начале или конце!");
+    }
 }
 else
 {
     configLogger.LogWarning("JWT секрет из переменной окружения не найден, используем из appsettings.json (длина: {Length})", jwtOptions.SecretKey.Length);
+    if (jwtOptions.SecretKey.Length < 32)
+    {
+        configLogger.LogError("JWT ключ из appsettings.json слишком короткий! Минимальная длина: 32 символа, текущая: {Length}", jwtOptions.SecretKey.Length);
+    }
 }
 if (jwtOptions != null)
 {
