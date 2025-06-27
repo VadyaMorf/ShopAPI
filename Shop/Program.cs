@@ -30,7 +30,6 @@ if (!string.IsNullOrEmpty(port))
 
 builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddAutoMapper(typeof(Shop.DataAccess.AutoMapperProfile));
-services.Configure<JwtOptions>(builder.Configuration.GetSection(nameof(JwtOptions)));
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -135,6 +134,13 @@ else
 }
 if (jwtOptions != null)
 {
+    // Регистрируем обновлённую конфигурацию в DI
+    services.Configure<JwtOptions>(options =>
+    {
+        options.SecretKey = jwtOptions.SecretKey;
+        options.ExpiresHours = jwtOptions.ExpiresHours;
+    });
+    
     builder.Services.AddApiAuthentication(Options.Create(jwtOptions));
 }
 
